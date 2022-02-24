@@ -8,6 +8,20 @@
               <h3>PostBook</h3>
               <a class="button-link" href="/admin/home">Back Office</a>
             </div>
+            <div class="card-body">
+              <nav>
+                <ul class="d-flex justify-content-center">
+                  <li>
+                    <router-link class="button-link" :to="{ name: 'home' }">Home</router-link>
+                  </li>
+                  <li>
+                    <router-link class="button-link" :to="{ name: 'about' }"
+                      >Chi Siamo</router-link
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
@@ -39,6 +53,14 @@ export default {
       right: 15px;
       top: 20%;
       // transform: translate(0, -50%);
+    }
+  }
+
+  .card-body {
+    nav {
+      ul {
+        list-style: none;
+      }
     }
   }
 }

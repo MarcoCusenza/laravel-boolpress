@@ -22,6 +22,12 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: rgb(76, 84, 84);
   /* font-weight: bold; */

@@ -31,6 +31,7 @@ export default {
   background-color: rgb(255, 113, 91);
   color: #ffffff;
   border-radius: 10px;
+  margin-bottom: 25px;
   .card-body {
     border-radius: 10px;
   }
