@@ -15,5 +15,5 @@ mix.js('resources/js/admin.js', 'public/js')
   .sass('resources/sass/admin.scss', 'public/css');
 
 
-mix.js('resources/js/front.js', 'public/js')
+mix.js('resources/js/guest/front.js', 'public/js')
   .sass('resources/sass/front.scss', 'public/css');
