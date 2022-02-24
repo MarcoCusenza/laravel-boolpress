@@ -6,7 +6,7 @@
           <div class="card text-center">
             <div class="card-body">
               <div class="post-box" v-for="post in posts" :key="post.id">
-                <h4>{{ post.title }}</h4>
+                <h4 class="title">{{ post.title }}</h4>
                 <img
                   v-if="post.image"
                   :src="
@@ -17,7 +17,18 @@
                   :alt="post.title"
                 />
                 <p>{{ post.content }}</p>
-                <div>{{ post.category_id }}</div>
+                <div class="details-box">
+                  <div v-if="post.category">
+                    <strong>Categoria:</strong> {{ post.category.name }}
+                  </div>
+                  <div v-if="post.tags">
+                    <strong>Tag:</strong>
+                    <span class="tag" v-for="(tag, i) in post.tags" :key="i">
+                      {{ tag.name
+                      }}<span v-if="i < post.tags.length - 1">,</span>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -62,8 +73,19 @@ export default {
       color: #ffffff;
       padding: 30px;
 
+      .title {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
       img {
-        width: 100%;
+        max-height: 200px;
+        max-width: 100%;
+        margin: 20px 0;
+      }
+
+      .details-box {
+        text-align: left;
       }
     }
   }

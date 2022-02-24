@@ -11,8 +11,13 @@ class PostController extends Controller
   public function index()
   {
     //leggere solo i post pubblicati
-    $posts = Post::where("published", true)->get();
+    $posts = Post::where("published", true)->with("category", "tags")->get();
 
     return response()->json($posts);
+  }
+
+  public function show($slug)
+  {
+    dd($slug);
   }
 }

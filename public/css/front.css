@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Lato:wght@100;
 
-/*!
- * Bootstrap v4.6.1 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+300;400;700;900&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -10960,5 +10955,33 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #4c5454;
+  font-family: "Open Sans", sans-serif;
+  /* font-weight: bold; */
+}
+
+.button-link {
+  color: black;
+  background-color: #1ea896;
+  padding: 8px;
+  border-radius: 5px;
+  margin-left: 3px;
+  transition: 0.1s ease-in-out;
+}
+
+.button-link:hover {
+  text-decoration: none;
+  background-color: #000000;
+  color: whitesmoke;
+  transition: 0.4s ease-in-out;
 }
 

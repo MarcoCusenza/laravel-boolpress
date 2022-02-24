@@ -5,7 +5,7 @@
         <div class="col-md-12 py-4">
           <div class="card">
             <div class="card-header text-center">
-              <h3>PostBook</h3>
+              <h3>Diario delle Ricette</h3>
               <a class="button-link" href="/admin/home">Back Office</a>
             </div>
             <div class="card-body">
