@@ -28,6 +28,12 @@
                       }}<span v-if="i < post.tags.length - 1">,</span>
                     </span>
                   </div>
+                  <router-link
+                    class="button-link"
+                    :to="{ name: 'single-post', params: { slug: post.slug } }"
+                  >
+                    Visualizza
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -72,6 +78,7 @@ export default {
       border-radius: 10px;
       color: #ffffff;
       padding: 30px;
+      position: relative;
 
       .title {
         font-size: 30px;
@@ -86,6 +93,12 @@ export default {
 
       .details-box {
         text-align: left;
+      }
+
+      .button-link {
+        position: absolute;
+        bottom: 20px;
+        right: 30px;
       }
     }
   }
