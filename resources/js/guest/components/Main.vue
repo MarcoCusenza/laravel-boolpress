@@ -1,30 +1,5 @@
 <template>
-  <main>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-12 py-4">
-          <div class="card text-center">
-            <div class="card-body">
-              <div class="post-box" v-for="post in posts" :key="post.id">
-                <h4>{{ post.title }}</h4>
-                <img
-                  v-if="post.image"
-                  :src="
-                    post.image
-                      ? 'storage/' + post.image
-                      : 'https://via.placeholder.com/150'
-                  "
-                  :alt="post.title"
-                />
-                <p>{{ post.content }}</p>
-                <div>{{ post.category_id }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -62,8 +37,8 @@ export default {
       color: #ffffff;
       padding: 30px;
 
-      img{
-        width:100%;
+      img {
+        width: 100%;
       }
     }
   }
