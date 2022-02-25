@@ -83,12 +83,15 @@ export default {
       .title {
         font-size: 30px;
         font-weight: bold;
+        height: 50px;
       }
 
       img {
-        max-height: 200px;
-        max-width: 100%;
+        height: 200px;
+        aspect-ratio: 1;
+        object-fit: cover;
         margin: 20px 0;
+        border-radius: 50%;
       }
 
       .details-box {
@@ -99,6 +102,12 @@ export default {
         position: absolute;
         bottom: 20px;
         right: 30px;
+        background-color: #ff715b;
+        color: #fff;
+      }
+
+      .button-link:hover {
+        background-color: #000000;
       }
     }
   }
