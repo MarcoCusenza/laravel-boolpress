@@ -1,5 +1,5 @@
 <template>
-<div class="single-post">
+  <div class="single-post">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12 py-4">
@@ -47,9 +47,14 @@ export default {
     };
   },
   created() {
-    axios.get(`/api/posts/${this.$route.params.slug}`).then((response) => {
-      this.post = response.data;
-    });
+    axios
+      .get(`/api/posts/${this.$route.params.slug}`)
+      .then((response) => {
+        this.post = response.data;
+      })
+      .catch((error) => {
+        this.$router.push({ name: "page-404" });
+      });
   },
 };
 </script>
