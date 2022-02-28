@@ -5,37 +5,39 @@
         <div class="col-md-12 py-4">
           <div class="card text-center">
             <div class="card-body">
-              <div class="post-box" v-for="post in posts" :key="post.id">
-                <h4 class="title">{{ post.title }}</h4>
-                <img
-                  v-if="post.image"
-                  :src="
-                    post.image
-                      ? 'storage/' + post.image
-                      : 'https://via.placeholder.com/150'
-                  "
-                  :alt="post.title"
-                />
-                <p>{{ post.content }}</p>
-                <div class="details-box">
-                  <div v-if="post.category">
-                    <strong>Categoria:</strong> {{ post.category.name }}
+              <ul class="post-box" v-for="post in posts" :key="post.id">
+                <li>
+                  <h4 class="title">{{ post.title }}</h4>
+                  <img
+                    v-if="post.image"
+                    :src="
+                      post.image
+                        ? 'storage/' + post.image
+                        : 'https://via.placeholder.com/150'
+                    "
+                    :alt="post.title"
+                  />
+                  <p>{{ post.content }}</p>
+                  <div class="details-box">
+                    <div v-if="post.category">
+                      <strong>Categoria:</strong> {{ post.category.name }}
+                    </div>
+                    <div v-if="post.tags">
+                      <strong>Tag:</strong>
+                      <span class="tag" v-for="(tag, i) in post.tags" :key="i">
+                        {{ tag.name
+                        }}<span v-if="i < post.tags.length - 1">,</span>
+                      </span>
+                    </div>
+                    <router-link
+                      class="button-link"
+                      :to="{ name: 'single-post', params: { slug: post.slug } }"
+                    >
+                      Visualizza
+                    </router-link>
                   </div>
-                  <div v-if="post.tags">
-                    <strong>Tag:</strong>
-                    <span class="tag" v-for="(tag, i) in post.tags" :key="i">
-                      {{ tag.name
-                      }}<span v-if="i < post.tags.length - 1">,</span>
-                    </span>
-                  </div>
-                  <router-link
-                    class="button-link"
-                    :to="{ name: 'single-post', params: { slug: post.slug } }"
-                  >
-                    Visualizza
-                  </router-link>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -74,6 +76,7 @@ export default {
     background-color: rgb(30, 168, 150);
 
     .post-box {
+      list-style: none;
       background-color: #524848;
       border-radius: 10px;
       color: #ffffff;

@@ -12,11 +12,20 @@
               <nav>
                 <ul class="d-flex justify-content-center">
                   <li>
-                    <router-link class="button-link" :to="{ name: 'home' }">Home</router-link>
+                    <router-link class="button-link" :to="{ name: 'home' }"
+                      >Home</router-link
+                    >
                   </li>
                   <li>
                     <router-link class="button-link" :to="{ name: 'about' }"
                       >Chi Siamo</router-link
+                    >
+                  </li>
+                  <li>
+                    <router-link
+                      class="button-link"
+                      :to="{ name: 'categories' }"
+                      >Categorie</router-link
                     >
                   </li>
                 </ul>
