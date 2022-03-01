@@ -2412,6 +2412,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePost",
   data: function data() {
@@ -2419,27 +2435,38 @@ __webpack_require__.r(__webpack_exports__);
       post: {},
       formData: {
         name: "",
-        content: ""
-      }
+        content: "",
+        post_id: null
+      },
+      sentComment: false,
+      formErrors: {}
     };
   },
   methods: {
     addComment: function addComment() {
+      var _this = this;
+
       // /api/comments
-      axios.post("/api/comments", {
-        params: this.formData
-      }).then(function (response) {
-        console.log(response);
+      axios.post("/api/comments", this.formData).then(function (response) {
+        //pulisco i campi
+        _this.formData.name = "";
+        _this.formData.content = ""; // mostro avviso commento inserito
+
+        _this.sentComment = true;
+      })["catch"](function (error) {
+        _this.formErrors = error.response.data.errors; // console.log(error.response.data.errors);
       });
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (response) {
-      _this.post = response.data;
+      _this2.post = response.data; //post id per inserire commento
+
+      _this2.formData.post_id = _this2.post.id;
     })["catch"](function (error) {
-      _this.$router.push({
+      _this2.$router.push({
         name: "page-404"
       });
     });
@@ -4625,6 +4652,34 @@ var render = function () {
                         },
                       }),
                       _vm._v(" "),
+                      _vm.formErrors.content
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "bg-primary text-light p-3 my-3 rounded",
+                            },
+                            [
+                              _c(
+                                "ul",
+                                _vm._l(
+                                  _vm.formErrors.content,
+                                  function (error, i) {
+                                    return _c("li", { key: i }, [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(error) +
+                                          "\n                      "
+                                      ),
+                                    ])
+                                  }
+                                ),
+                                0
+                              ),
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
                         "button",
                         {
@@ -4636,6 +4691,27 @@ var render = function () {
                             "\n                    Invia\n                  "
                           ),
                         ]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.sentComment,
+                          expression: "sentComment",
+                        },
+                      ],
+                      staticClass:
+                        "bg-dark text-light text-center my-3 p-3 rounded",
+                    },
+                    [
+                      _vm._v(
+                        "\n                  Commento in fase di approvazione. Grazie!\n                "
                       ),
                     ]
                   ),

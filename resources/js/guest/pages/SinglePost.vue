@@ -52,6 +52,16 @@
                       class="my-3 p-1"
                       v-model="formData.content"
                     ></textarea>
+                    <div
+                      class="bg-primary text-light p-3 my-3 rounded"
+                      v-if="formErrors.content"
+                    >
+                      <ul>
+                        <li v-for="(error, i) in formErrors.content" :key="i">
+                          {{ error }}
+                        </li>
+                      </ul>
+                    </div>
 
                     <button
                       type="submit"
@@ -60,6 +70,12 @@
                       Invia
                     </button>
                   </form>
+                  <div
+                    class="bg-dark text-light text-center my-3 p-3 rounded"
+                    v-show="sentComment"
+                  >
+                    Commento in fase di approvazione. Grazie!
+                  </div>
                 </div>
               </div>
             </div>
@@ -79,18 +95,27 @@ export default {
       formData: {
         name: "",
         content: "",
+        post_id: null,
       },
+      sentComment: false,
+      formErrors: {},
     };
   },
   methods: {
     addComment() {
       // /api/comments
       axios
-        .post("/api/comments", {
-          params: this.formData,
-        })
+        .post("/api/comments", this.formData)
         .then((response) => {
-          console.log(response);
+          //pulisco i campi
+          this.formData.name = "";
+          this.formData.content = "";
+          // mostro avviso commento inserito
+          this.sentComment = true;
+        })
+        .catch((error) => {
+          this.formErrors = error.response.data.errors;
+          // console.log(error.response.data.errors);
         });
     },
   },
@@ -99,6 +124,8 @@ export default {
       .get(`/api/posts/${this.$route.params.slug}`)
       .then((response) => {
         this.post = response.data;
+        //post id per inserire commento
+        this.formData.post_id = this.post.id;
       })
       .catch((error) => {
         this.$router.push({ name: "page-404" });
