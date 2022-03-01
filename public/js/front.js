@@ -2380,12 +2380,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePost",
   data: function data() {
     return {
-      post: {}
+      post: {},
+      formData: {
+        name: "",
+        content: ""
+      }
     };
+  },
+  methods: {
+    addComment: function addComment() {
+      // /api/comments
+      axios.post("/api/comments", {
+        params: this.formData
+      }).then(function (response) {
+        console.log(response);
+      });
+    }
   },
   created: function created() {
     var _this = this;
@@ -2528,7 +2574,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card[data-v-57a632a8] {\n  border: none;\n  border-radius: 10px;\n}\n.card .card-body[data-v-57a632a8] {\n  padding: 60px;\n  border-radius: 10px;\n  background-color: #1ea896;\n}\n.card .card-body .post-box[data-v-57a632a8] {\n  background-color: #524848;\n  border-radius: 10px;\n  color: #ffffff;\n  padding: 30px;\n}\n.card .card-body .post-box .title[data-v-57a632a8] {\n  font-size: 30px;\n  font-weight: bold;\n}\n.card .card-body .post-box img[data-v-57a632a8] {\n  max-height: 200px;\n  max-width: 100%;\n  margin: 20px 0;\n}\n.card .card-body .post-box .details-box[data-v-57a632a8] {\n  text-align: left;\n}", ""]);
+exports.push([module.i, ".card[data-v-57a632a8] {\n  border: none;\n  border-radius: 10px;\n}\n.card .card-body[data-v-57a632a8] {\n  padding: 60px;\n  border-radius: 10px;\n  background-color: #1ea896;\n}\n.card .card-body .post-box[data-v-57a632a8] {\n  background-color: #524848;\n  border-radius: 10px;\n  color: #ffffff;\n  padding: 30px;\n}\n.card .card-body .post-box .title[data-v-57a632a8] {\n  font-size: 30px;\n  font-weight: bold;\n}\n.card .card-body .post-box img[data-v-57a632a8] {\n  max-height: 200px;\n  max-width: 100%;\n  margin: 20px 0;\n}\n.card .card-body .post-box .details-box[data-v-57a632a8] {\n  text-align: left;\n}\n.card .card-body .post-box .comment-form[data-v-57a632a8] {\n  background-color: #ff715b;\n  margin: 20px 0;\n  padding: 20px;\n  border-radius: 10px;\n}", ""]);
 
 // exports
 
@@ -4505,6 +4551,94 @@ var render = function () {
                         2
                       )
                     : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "comment-form" }, [
+                  _c("h4", [_vm._v("Aggiungi un commento")]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      staticClass: "d-flex flex-column",
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.addComment()
+                        },
+                      },
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.name,
+                            expression: "formData.name",
+                          },
+                        ],
+                        staticClass: "mt-3 p-1",
+                        attrs: {
+                          type: "text",
+                          id: "name",
+                          placeholder: "Inserisci il tuo nickname",
+                        },
+                        domProps: { value: _vm.formData.name },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.formData, "name", $event.target.value)
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.content,
+                            expression: "formData.content",
+                          },
+                        ],
+                        staticClass: "my-3 p-1",
+                        attrs: {
+                          id: "content",
+                          cols: "30",
+                          rows: "5",
+                          placeholder: "Inserisci il contenuto del commento",
+                        },
+                        domProps: { value: _vm.formData.content },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formData,
+                              "content",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "w-25 m-auto button-link border-0",
+                          attrs: { type: "submit" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Invia\n                  "
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
                 ]),
               ]),
             ]),

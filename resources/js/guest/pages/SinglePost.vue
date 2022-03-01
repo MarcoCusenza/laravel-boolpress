@@ -29,6 +29,38 @@
                     </span>
                   </div>
                 </div>
+
+                <div class="comment-form">
+                  <h4>Aggiungi un commento</h4>
+                  <form
+                    @submit.prevent="addComment()"
+                    class="d-flex flex-column"
+                  >
+                    <input
+                      type="text"
+                      id="name"
+                      placeholder="Inserisci il tuo nickname"
+                      class="mt-3 p-1"
+                      v-model="formData.name"
+                    />
+
+                    <textarea
+                      id="content"
+                      cols="30"
+                      rows="5"
+                      placeholder="Inserisci il contenuto del commento"
+                      class="my-3 p-1"
+                      v-model="formData.content"
+                    ></textarea>
+
+                    <button
+                      type="submit"
+                      class="w-25 m-auto button-link border-0"
+                    >
+                      Invia
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -44,7 +76,23 @@ export default {
   data() {
     return {
       post: {},
+      formData: {
+        name: "",
+        content: "",
+      },
     };
+  },
+  methods: {
+    addComment() {
+      // /api/comments
+      axios
+        .post("/api/comments", {
+          params: this.formData,
+        })
+        .then((response) => {
+          console.log(response);
+        });
+    },
   },
   created() {
     axios
@@ -88,6 +136,13 @@ export default {
 
       .details-box {
         text-align: left;
+      }
+
+      .comment-form {
+        background-color: rgb(255, 113, 91);
+        margin: 20px 0;
+        padding: 20px;
+        border-radius: 10px;
       }
     }
   }
