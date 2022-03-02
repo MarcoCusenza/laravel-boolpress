@@ -25,6 +25,16 @@
                                             {{ $post->category->name }}</p>
                                     @endif
 
+                                    <div class="my-4">
+                                        <h5>Commenti da approvare:</h5>
+                                        @php
+                                            $tot_comments_na = $post->comments->filter(function ($comment) {
+                                                return $comment->approved == 0;
+                                            });
+                                        @endphp
+                                        {{ count($tot_comments_na) }}
+                                    </div>
+
                                     <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Visualizza</a>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Modifica</a>
                                 </div>

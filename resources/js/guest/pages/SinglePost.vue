@@ -30,51 +30,66 @@
                   </div>
                 </div>
 
-                <div class="comment-form">
-                  <h4>Aggiungi un commento</h4>
-                  <form
-                    @submit.prevent="addComment()"
-                    class="d-flex flex-column"
-                  >
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="Inserisci il tuo nickname"
-                      class="mt-3 p-1"
-                      v-model="formData.name"
-                    />
+                <!-- Sezione commenti -->
+                <div class="comment-section">
+                  <div class="comment-list" v-if="post.comments.length > 0">
+                    <h3>Commenti</h3>
+                    <ul>
+                      <li v-for="comment in post.comments" :key="comment.id">
+                        <h5 class="comment-author">
+                          {{ comment.name }} ha scritto:
+                        </h5>
+                        <p class="comment-content">{{ comment.content }}</p>
+                      </li>
+                    </ul>
+                  </div>
 
-                    <textarea
-                      id="content"
-                      cols="30"
-                      rows="5"
-                      placeholder="Inserisci il contenuto del commento"
-                      class="my-3 p-1"
-                      v-model="formData.content"
-                    ></textarea>
+                  <div class="comment-form">
+                    <h4>Aggiungi un commento</h4>
+                    <form
+                      @submit.prevent="addComment()"
+                      class="d-flex flex-column"
+                    >
+                      <input
+                        type="text"
+                        id="name"
+                        placeholder="Inserisci il tuo nickname"
+                        class="mt-3 p-1"
+                        v-model="formData.name"
+                      />
+
+                      <textarea
+                        id="content"
+                        cols="30"
+                        rows="5"
+                        placeholder="Inserisci il contenuto del commento"
+                        class="my-3 p-1"
+                        v-model="formData.content"
+                      ></textarea>
+                      <div
+                        class="bg-primary text-light p-3 my-3 rounded"
+                        v-if="formErrors.content"
+                      >
+                        <ul>
+                          <li v-for="(error, i) in formErrors.content" :key="i">
+                            {{ error }}
+                          </li>
+                        </ul>
+                      </div>
+
+                      <button
+                        type="submit"
+                        class="w-25 m-auto button-link border-0"
+                      >
+                        Invia
+                      </button>
+                    </form>
                     <div
-                      class="bg-primary text-light p-3 my-3 rounded"
-                      v-if="formErrors.content"
+                      class="bg-dark text-light text-center my-3 p-3 rounded"
+                      v-show="sentComment"
                     >
-                      <ul>
-                        <li v-for="(error, i) in formErrors.content" :key="i">
-                          {{ error }}
-                        </li>
-                      </ul>
+                      Commento in fase di approvazione. Grazie!
                     </div>
-
-                    <button
-                      type="submit"
-                      class="w-25 m-auto button-link border-0"
-                    >
-                      Invia
-                    </button>
-                  </form>
-                  <div
-                    class="bg-dark text-light text-center my-3 p-3 rounded"
-                    v-show="sentComment"
-                  >
-                    Commento in fase di approvazione. Grazie!
                   </div>
                 </div>
               </div>
@@ -165,11 +180,38 @@ export default {
         text-align: left;
       }
 
-      .comment-form {
-        background-color: rgb(255, 113, 91);
+      .comment-section {
+        background-color: rgb(255, 159, 145);
         margin: 20px 0;
         padding: 20px;
         border-radius: 10px;
+
+        .comment-list {
+          ul {
+            list-style: none;
+
+            li {
+              text-align: start;
+              background-color: rgb(255, 113, 91);
+              margin: 15px 0;
+              padding: 10px;
+              border-radius: 10px;
+              display: flex;
+              flex-direction: column;
+
+              * {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+
+        .comment-form {
+          background-color: rgb(255, 113, 91);
+          margin: 20px 0;
+          padding: 20px;
+          border-radius: 10px;
+        }
       }
     }
   }

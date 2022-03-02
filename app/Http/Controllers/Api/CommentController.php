@@ -13,7 +13,7 @@ class CommentController extends Controller
   {
     $data = $request->all();
 
-    //validazione diversa perché altrimenti mi farebbe un redirect
+    //validazione diversa perché altrimenti mi farebbe un redirect al form
     $validator = Validator::make(
       $data,
       [
