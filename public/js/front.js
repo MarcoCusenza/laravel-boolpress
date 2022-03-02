@@ -2443,6 +2443,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePost",
   data: function data() {
@@ -4596,7 +4599,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "comment-section" }, [
-                  _vm.post.comments.length > 0
+                  _vm.post && _vm.post.comments && _vm.post.comments.length > 0
                     ? _c("div", { staticClass: "comment-list" }, [
                         _c("h3", [_vm._v("Commenti")]),
                         _vm._v(" "),

@@ -32,7 +32,10 @@
 
                 <!-- Sezione commenti -->
                 <div class="comment-section">
-                  <div class="comment-list" v-if="post.comments.length > 0">
+                  <div
+                    class="comment-list"
+                    v-if="post && post.comments && post.comments.length > 0"
+                  >
                     <h3>Commenti</h3>
                     <ul>
                       <li v-for="comment in post.comments" :key="comment.id">
